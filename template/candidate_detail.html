@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h2>{{ candidate.name }}</h2>
+<img src="{{ candidate.photo.url }}" alt="{{ candidate.name }}" style="max-width:300px;">
+<p><strong>Biography:</strong> {{ candidate.bio }}</p>
+<p><strong>Total Votes:</strong> {{ candidate.votes_count }}</p>
+
+<hr>
+
+{% if existing_vote %}
+{% if existing_vote.candidate.id == candidate.id %}
+<form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="unvote">
+    <p class="text-success mt-2">✅ Ku Mahadsanid Muwaadin Codkaaga.</p>
+    <button type="submit" class="btn btn-warning">Unvote</button>
+</form>
+
+{% else %}
+<p class="text-danger">⚠️ You already voted for <strong>{{ existing_vote.candidate.name }}</strong>.</p>
+<p>Please unvote there first to vote for {{ candidate.name }}.</p>
+{% endif %}
+{% else %}
+<form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="vote">
+    <button type="submit" class="btn btn-primary">Vote for {{ candidate.name }}</button>
+</form>
+{% endif %}
+
+<hr>
+
+<!-- Show messages (success, error) -->
+{% for message in messages %}
+<div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %} mt-3">
+    {{ message }}
+</div>
+{% endfor %}
+{% endblock %}

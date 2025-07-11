@@ -1,0 +1,49 @@
+<!-- {% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<h2>My Profile</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label>Bio:</label><br>
+    <textarea name="bio" rows="3" cols="40">{{ profile.bio }}</textarea><br><br>
+<label>Gender:</label><br>
+<select name="gender">
+    <option value="">Select Gender</option>
+    <option value="M" {% if profile.gender == "M" %}selected{% endif %}>Male</option>
+    <option value="F" {% if profile.gender == "F" %}selected{% endif %}>Female</option>
+</select><br><br>
+
+
+<label>Nationality:</label><br>
+<select name="nationality">
+    <option value="">Select Country</option>
+    {% for code, name in nationality_choices %}
+    <option value="{{ code }}" {% if profile.nationality == code %}selected{% endif %}>
+        {{ name }}
+    </option>
+    {% endfor %}
+</select><br><br>
+
+
+    <label>Profile Image:</label><br>
+    <input type="file" name="profile_image"><br>
+    {% if profile.profile_image %}
+    <img src="{{ profile.profile_image.url }}" width="100" class="mt-2" />
+    {% endif %}<br><br>
+
+    <button type="submit" class="btn btn-success">Update</button>
+</form>
+
+<hr>
+<h4>Your Vote:</h4>
+{% if voted_candidate %}
+<p>You voted for <strong>{{ voted_candidate.name }}</strong></p>
+<img src="{{ voted_candidate.photo.url }}" width="120" />
+{% else %}
+<p>You have not voted yet.</p>
+{% endif %}
+
+{% endblock %} -->
