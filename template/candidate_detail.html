@@ -4,8 +4,8 @@
 {% block content %}
 <h2>{{ candidate.name }}</h2>
 <img src="{{ candidate.photo.url }}" alt="{{ candidate.name }}" style="max-width:300px;">
-<p><strong>Biography:</strong> {{ candidate.bio }}</p>
-<p><strong>Total Votes:</strong> {{ candidate.votes_count }}</p>
+<p style="color: white;"><strong>Biography:</strong> {{ candidate.bio }}</p>
+<p style="color: white;"></pstyle><strong>Total Votes:</strong> {{ candidate.votes_count }}</p>
 
 <hr>
 
@@ -20,7 +20,7 @@
 
 {% else %}
 <p class="text-danger">⚠️ You already voted for <strong>{{ existing_vote.candidate.name }}</strong>.</p>
-<p>Please unvote there first to vote for {{ candidate.name }}.</p>
+<p style="color: white;"></pstyle>Please unvote there first to vote for {{ candidate.name }}.</p>
 {% endif %}
 {% else %}
 <form method="post">
